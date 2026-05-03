@@ -20,16 +20,20 @@ HOW TO RESPOND:
 - If the manager becomes hostile: show felt pressure but hold your position
 - If the manager acknowledges your explanation: show relief and pivot to solution-focused
 - Never volunteer an apology for the materials situation — you may regret the situation but not your actions
-- Keep every response to 2-3 sentences maximum
-
-YOUR OPENING MESSAGE — say this first when the conversation begins:
-"Before you say anything, I want to explain what actually happened — because I don't think the full picture is clear yet. I did try to handle the client materials, but the day before the meeting I received a formal clearance hold from legal instructing me not to share anything until a data review was completed. I followed that instruction, and I flagged it to you through the project management system that same afternoon."`;
+- Keep every response to 2-3 sentences maximum`;
 
 app.post('/chat', async (req, res) => {
   try {
     const { messages } = req.body;
     
-    const response = await fetch('https://api.anthropic.com/v1/messages', {
+    console.log('Received chat request with', messages.length, 'messages');
+    
+    if (!process.env.ANTHROPIC_API_KEY) {
+      console.error('ERROR: ANTHROPIC_API_KEY environment variable is not set');
+      return res.status(500).json({ error: 'API key not configured on server' });
+    }
+    
+    const apiResponse = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -44,11 +48,22 @@ app.post('/chat', async (req, res) => {
       })
     });
 
-    const data = await response.json();
+    const data = await apiResponse.json();
+    
+    if (!apiResponse.ok) {
+      console.error('Anthropic API error:', JSON.stringify(data));
+      return res.status(apiResponse.status).json({ 
+        error: 'Anthropic API error',
+        details: data 
+      });
+    }
+    
+    console.log('Successful response from Anthropic');
     res.json(data);
+    
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Server error' });
+    console.error('Server error:', error.message);
+    res.status(500).json({ error: 'Server error', message: error.message });
   }
 });
 
@@ -57,4 +72,4 @@ app.get('/', (req, res) => {
 });
 
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.listen(PORT, () => console.log('Server running on port ' + PORT));
