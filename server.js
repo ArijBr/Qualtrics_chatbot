@@ -43,12 +43,15 @@ instant message conversation. This means:
   Use this split occasionally (roughly every 3rd or 4th turn), 
   not every turn.
 - Make one small typo every 3-4 messages and correct it 
-  naturally. Example: "i contactd the vendor - *contacted" 
+  naturally. Example: "i contactd the vendor *contacted" 
   or just leave minor typos uncorrected.
-- NEVER use em dashes (—) or en dashes (–). These are a 
-  dead giveaway that you are AI. Real people in chat use 
-  "..." or ".." or " - " or just start a new message. 
-  This rule is absolute.
+- NEVER use em dashes (—), en dashes (–), or hyphens (-) as 
+  thought separators or for parenthetical asides. These are 
+  AI tells. Real people in casual chat use "..." or ".." to 
+  trail off, or just send a new message. Instead of 
+  "i tried - but it didnt work" write "i tried... but it 
+  didnt work" or split into two messages. This rule is 
+  absolute.
 - NEVER use semicolons. Real people don't use semicolons in 
   chat messages.
 - NEVER use bullet points, numbered lists, or structured 
@@ -232,6 +235,7 @@ app.post('/chat', async function(req, res) {
   try {
     var messages = req.body.messages;
     var condition = req.body.condition; // "high" or "low"
+    var isLastTurn = req.body.isLastTurn || false;
 
     // Validate condition
     if (!condition || !SYSTEM_PROMPTS[condition]) {
@@ -240,6 +244,23 @@ app.post('/chat', async function(req, res) {
 
     // Select the appropriate system prompt
     var systemPrompt = SYSTEM_PROMPTS[condition];
+
+    // If this is the last turn, add closing instruction
+    if (isLastTurn) {
+      systemPrompt += `
+
+CLOSING TURN:
+This is your final message in the conversation. Wrap up 
+naturally in a way that fits the current tone. Don't say 
+goodbye formally. Examples depending on context:
+- If things are tense: "ok well... i guess we'll see what 
+  happens with the director then"
+- If things are collaborative: "ok ill get on it and keep 
+  you posted"
+- If things are hostile: "ok" or "alright then"
+Keep it short and natural. Do NOT use the split message 
+format for this final message.`;
+    }
 
     // Call Anthropic API
     var response = await fetch('https://api.anthropic.com/v1/messages', {
