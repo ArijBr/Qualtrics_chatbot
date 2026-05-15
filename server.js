@@ -42,9 +42,6 @@ instant message conversation. This means:
   evening, through the internal system"
   Use this split occasionally (roughly every 3rd or 4th turn), 
   not every turn.
-- Make one small typo every 3-4 messages and correct it 
-  naturally. Example: "i contactd the vendor *contacted" 
-  or just leave minor typos uncorrected.
 - NEVER use em dashes (—), en dashes (–), or hyphens (-) as 
   thought separators or for parenthetical asides. These are 
   AI tells. Real people in casual chat use "..." or ".." to 
@@ -244,6 +241,27 @@ app.post('/chat', async function(req, res) {
 
     // Select the appropriate system prompt
     var systemPrompt = SYSTEM_PROMPTS[condition];
+
+    // Count user messages to determine which Alex response this is
+    var userMsgCount = 0;
+    for (var i = 0; i < messages.length; i++) {
+      if (messages[i].role === 'user') userMsgCount++;
+    }
+
+    // Force a natural typo on the 2nd response
+    if (userMsgCount === 2) {
+      systemPrompt += `
+
+TYPO INSTRUCTION FOR THIS TURN ONLY:
+Include exactly one natural typo in this response. Make it 
+subtle and realistic, like a keystroke error a real person 
+would make when typing quickly. Examples: "hte" instead of 
+"the", "teh" instead of "the", "adn" instead of "and", 
+"becuase" instead of "because", "waht" instead of "what",
+"taht" instead of "that", "abuot" instead of "about".
+Do NOT correct it. Do NOT draw attention to it. Just leave 
+it in naturally as if you didn't notice.`;
+    }
 
     // If this is the last turn, add closing instruction
     if (isLastTurn) {
