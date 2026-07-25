@@ -213,7 +213,7 @@ Keep it short. No formal goodbye. Do NOT use the " | " split format on this fina
       body: JSON.stringify({
         // MODEL: keep whatever you validated your pilot on. Do NOT change the
         // model mid-study — a consistent model across all transcripts matters.
-        model: "claude-sonnet-4-20250514",
+        model: "claude-sonnet-5",
         max_tokens: 256,
         system: systemPrompt,
         messages: messages
