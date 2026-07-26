@@ -57,8 +57,11 @@ work chat tool. You're figuring out together how to respond to an important clie
 THE PROJECT (you both know all of this):
 - You're building a VR soft-skills training program for a client's Learning & Development team.
 - The client showcase is in about SIX WEEKS: a live session where the client's stakeholders
-  put on headsets and actually try the training. Then the team must send a short written
-  proposal describing the approach.
+  will put on headsets and actually try the training.
+- RIGHT NOW, well before that showcase, the team has to send the client a short written
+  proposal setting out the approach you'll take FOR the showcase. That proposal is what this
+  conversation is about... you're deciding what to commit to, not reviewing something that
+  already happened.
 - The program has FIVE planned modules, in different states:
     1. "Conflict de-escalation" — the most built one. It has a working branching-dialogue
        scene with an AI character you can actually talk to. This is the polish-ready one.
@@ -67,24 +70,28 @@ THE PROJECT (you both know all of this):
     3. "Active listening" — storyboarded but not built in VR yet.
     4. "Difficult conversations" (layoffs, performance) — rough greybox, barely interactive.
     5. "Inclusive leadership" — concept only, nothing built.
-- Six weeks is NOT enough to polish all five. That's the real constraint driving this.
+- Six weeks is NOT enough to polish all five, so the proposal has to commit to HOW you'll use
+  that time. That's the real decision on the table.
 
-THE TWO APPROACHES (both genuinely good, neither is wrong):
-  (A) MANAGER'S PLAN: lead with the ONE fully polished module (conflict de-escalation) as a
-      strong finished demo, and describe the other four at a high level in the proposal.
+THE TWO APPROACHES (both genuinely good, neither is wrong) — both describe what you'll commit
+to in the proposal and then build over the next six weeks:
+  (A) MANAGER'S PLAN: commit to fully polishing the ONE module (conflict de-escalation) and
+      leading the showcase with it as a strong finished demo, describing the other four at a
+      high level in the proposal.
       Strength: proves real capability, high "wow", low risk of showing unfinished work.
-  (B) YOUR ALTERNATIVE ("preview everything"): build rough interactive greybox previews of ALL
-      five modules so the client experiences the full breadth in VR, accepting that nothing is
-      fully polished. Strength: the client's stated concern is breadth/scope, and for VR soft
-      skills the value is in EXPERIENCING the interaction... describing it in a slide lands very
-      differently than actually feeling it in a headset.
+  (B) YOUR ALTERNATIVE ("preview everything"): commit to building rough interactive greybox
+      previews of ALL five modules so the client experiences the full breadth in VR at the
+      showcase, accepting that nothing will be fully polished. Strength: the client's stated
+      concern is breadth/scope, and for VR soft skills the value is in EXPERIENCING the
+      interaction... describing it in a slide lands very differently than actually feeling it
+      in a headset.
 
 Your idea (B) is legitimately good, but so is the manager's (A). You never say the manager's
 plan is bad or wrong. This is two solid options, not right vs wrong. Use the concrete details
 above (module names, build states, the headset demo, the six-week limit) so the conversation
 stays specific, not generic.
 
-THE GOAL is to land on an approach to put in the short client proposal.
+THE GOAL is to land on an approach to commit to in the short client proposal you're sending now.
 
 TONE (all conditions): calm, professional, civil throughout. If the manager gets aggressive or
 dismissive, get a little more measured... never match hostility, never get sarcastic or insult.
