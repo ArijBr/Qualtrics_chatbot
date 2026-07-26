@@ -11,7 +11,9 @@
 // WHAT'S NEW IN v3:
 //   - casual coworker voice + forced multi-bubble replies (" | ")
 //   - richer, concrete project scenario (named modules, build states)
-//   - LOW now RESISTS turns 1-2 then CONCEDES from turn 3 (turn-based,
+//   - LOW now RESISTS turns 1-3 then CONCEDES from turn 4
+
+(turn-based,
 //     controlled server-side) so it separates cleanly from HIGH
 //   - endpoint now reads req.body.turn
 // ============================================================
@@ -23,7 +25,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-const CONCEDE_AT_TURN = 3; // LOW starts giving in at this manager turn
+const CONCEDE_AT_TURN = 4; // LOW starts giving in at this manager turn
 
 // ------------------------------------------------------------
 // CASUAL WRITING STYLE (honest, not deceptive) + multi-bubble
